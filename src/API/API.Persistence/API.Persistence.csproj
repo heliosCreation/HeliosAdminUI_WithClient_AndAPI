@@ -10,4 +10,13 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\API.Application\API.Application.csproj" />
+    <ProjectReference Include="..\API.Domain\API.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
