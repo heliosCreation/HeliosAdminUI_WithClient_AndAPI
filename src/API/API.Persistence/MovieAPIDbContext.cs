@@ -1,11 +1,9 @@
-﻿using API.Application.Contracts;
+﻿using API.Application.Contracts.Identity;
 using API.Domain.Common;
 using API.Domain.Entities;
 using API.Persistence.Seeding;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
