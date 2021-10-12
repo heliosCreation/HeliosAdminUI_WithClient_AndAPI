@@ -8,4 +8,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\API.Application\API.Application.csproj" />
+    <ProjectReference Include="..\API.Infrastructure\API.Infrastructure.csproj" />
+    <ProjectReference Include="..\API.Persistence\API.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
