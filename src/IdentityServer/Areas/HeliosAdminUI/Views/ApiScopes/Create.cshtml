@@ -1,0 +1,79 @@
+﻿@model CreateApiScopeModel;
+
+@{
+    if (ViewBag.isSuccess == true)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Your new api scope has been added successfully. <br />
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+}
+<a asp-action="GetAll" class="btn btn-primary mb-3"> <i class="bi bi-arrow-left-circle-fill"></i> Go back to List</a>
+
+<div class="card">
+    <div class="card-header api-scopes-theme"></div>
+    <div class="card-body">
+        <h4 class="card-title">Create a new API scope</h4>
+        <hr />
+        <form method="post" asp-controller="ApiScopes" asp-action="Create">
+            <div class="row">
+                <div class="form-group col-6">
+                    <LabelInfo asp-for="Name"></LabelInfo>
+                    <div>
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                    <span class="text-danger" asp-validation-for="Name"></span>
+                </div>
+
+                <div class="form-group col-6">
+                    <LabelInfo asp-for="DisplayName"></LabelInfo>
+                    <div>
+                        <input asp-for="DisplayName" class="form-control" />
+                    </div>
+                    <span class="text-danger" asp-validation-for="DisplayName"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-12">
+                    <LabelInfo asp-for="Description"></LabelInfo>
+                    <div>
+                        <textarea cols="20" rows="10" asp-for="Description" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-2">
+                    <LabelInfo asp-for="Emphasize"></LabelInfo>
+                    <input asp-for="Emphasize" type="checkbox" />
+                </div>
+                <div class="col-2">
+                    <LabelInfo asp-for="Required"></LabelInfo>
+                    <input asp-for="Required" type="checkbox"/>
+                </div>
+
+                <div class="col-2">
+                    <LabelInfo asp-for="Enabled"></LabelInfo>
+                    <input asp-for="Enabled" type="checkbox"/>
+                </div>
+                <div class="col-lg-4">
+                    <LabelInfo asp-for="ShowInDiscoveryDocument"></LabelInfo>
+                    <input asp-for="ShowInDiscoveryDocument" type="checkbox" />
+
+                </div>
+            </div>
+            <hr />
+
+            <div class="form-group row">
+
+                <div class="col-lg-2">
+                    <button class="btn btn-success btn-block">Create <i class="bi bi-check-square ml-1"></i></button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
