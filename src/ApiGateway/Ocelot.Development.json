@@ -1,0 +1,60 @@
+{
+  "Routes": [
+    //// Movie API -- https://localhost:5001 ////
+    {
+      "DownstreamPathTemplate": "/api/v1/Movies",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/Movies",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      //Response Cache
+      "FileCacheOptions": { "TtlSeconds": 15 },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityApiKey",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Movies/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/Movies/{id}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      //Response Cache
+      "FileCacheOptions": { "TtlSeconds": 15 },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityApiKey",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/ApplicationUserProfiles/{subject}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/ApplicationUserProfiles/{subject}",
+      "UpstreamHttpMethod": [ "Get" ],
+      //Response Cache
+      "FileCacheOptions": { "TtlSeconds": 15 },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityApiKey",
+        "AllowedScopes": []
+      }
+    }
+  ]
+
+}
