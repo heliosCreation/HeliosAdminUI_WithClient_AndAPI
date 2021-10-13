@@ -1,0 +1,52 @@
+@using IdentityServer4.Extensions
+
+@{
+    string name = null;
+    if (!true.Equals(ViewData["signed-out"]))
+    {
+        name = Context.User?.GetDisplayName();
+    }
+}
+
+<div class="nav-page">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <a href="~/" class="navbar-brand">
+            <img src="~/icon.png" class="icon-banner">
+            IdentityServer4
+        </a>
+
+        @if (!string.IsNullOrWhiteSpace(name))
+        {
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">@name <b class="caret"></b></a>
+
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" asp-action="Logout" asp-area="" asp-controller="Account">Logout</a>
+                    </div>
+                </li>
+            </ul>
+
+            @if (User.IsInRole("IsAdmin"))
+            {
+                <ul class="navbar-nav ml-auto mr-5">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">HeliosAdminUI <b class="caret"></b></a>
+
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" asp-area="HeliosAdminUI" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="dropdown-item" asp-area="HeliosAdminUI" asp-controller="ApiScopes" asp-action="Index">Api Scopes</a>
+                            <a class="dropdown-item" asp-area="HeliosAdminUI" asp-controller="IdentityResources" asp-action="Index">Identity Resources</a>
+                            <a class="dropdown-item" asp-area="HeliosAdminUI" asp-controller="Clients" asp-action="Index">Clients</a>
+                            <a class="dropdown-item" asp-area="HeliosAdminUI" asp-controller="UserManagement" asp-action="UserHome">Users Management</a>
+                            <a class="dropdown-item" asp-area="HeliosAdminUI" asp-controller="UserManagement" asp-action="Index">Role Management</a>
+                        </div>
+                    </li>
+                </ul>
+            }
+
+        }
+
+    </nav>
+</div>

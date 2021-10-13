@@ -13,19 +13,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{67F3D040-D167-4398-ACA6-11A6D1309723}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieAPI", "src\API\MovieAPI\MovieAPI.csproj", "{718CA179-7D50-4483-A73C-DABCF48D1BD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieAPI", "src\API\MovieAPI\MovieAPI.csproj", "{718CA179-7D50-4483-A73C-DABCF48D1BD7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{5710F2C3-741C-4657-9350-24C824EBE7CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{958B0841-E656-4038-AD8C-AE5F04B27D14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Domain", "src\API\API.Domain\API.Domain.csproj", "{C4A8DE54-56C6-46B1-8240-5B6F66F6A61D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Domain", "src\API\API.Domain\API.Domain.csproj", "{C4A8DE54-56C6-46B1-8240-5B6F66F6A61D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Application", "src\API\API.Application\API.Application.csproj", "{7C1C1C51-435E-4338-8151-2FE3A0D1E0F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Application", "src\API\API.Application\API.Application.csproj", "{7C1C1C51-435E-4338-8151-2FE3A0D1E0F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Infrastructure", "src\API\API.Infrastructure\API.Infrastructure.csproj", "{B68DEB3A-27FD-4EBB-A4E8-D27F705A75DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Infrastructure", "src\API\API.Infrastructure\API.Infrastructure.csproj", "{B68DEB3A-27FD-4EBB-A4E8-D27F705A75DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Persistence", "src\API\API.Persistence\API.Persistence.csproj", "{ACBA019A-F578-4E38-872A-51D0C9254B1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Persistence", "src\API\API.Persistence\API.Persistence.csproj", "{ACBA019A-F578-4E38-872A-51D0C9254B1C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "src\IdentityServer\IdentityServer.csproj", "{FC74BB3F-D795-4A08-AFB9-3D5242966EF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{ACBA019A-F578-4E38-872A-51D0C9254B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACBA019A-F578-4E38-872A-51D0C9254B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACBA019A-F578-4E38-872A-51D0C9254B1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC74BB3F-D795-4A08-AFB9-3D5242966EF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC74BB3F-D795-4A08-AFB9-3D5242966EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC74BB3F-D795-4A08-AFB9-3D5242966EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC74BB3F-D795-4A08-AFB9-3D5242966EF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{7C1C1C51-435E-4338-8151-2FE3A0D1E0F0} = {5710F2C3-741C-4657-9350-24C824EBE7CA}
 		{B68DEB3A-27FD-4EBB-A4E8-D27F705A75DE} = {958B0841-E656-4038-AD8C-AE5F04B27D14}
 		{ACBA019A-F578-4E38-872A-51D0C9254B1C} = {958B0841-E656-4038-AD8C-AE5F04B27D14}
+		{FC74BB3F-D795-4A08-AFB9-3D5242966EF5} = {67F3D040-D167-4398-ACA6-11A6D1309723}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {67644E66-143D-4EF9-B5C8-7D04681C3BDB}
