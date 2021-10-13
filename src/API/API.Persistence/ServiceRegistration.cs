@@ -11,7 +11,7 @@ namespace API.Persistence
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<MovieAPIDbContext>(
-                opt => opt.UseSqlServer(configuration.GetConnectionString("MovieAPIDataConnectionString"),
+                opt => opt.UseSqlServer(configuration.GetConnectionString("MovieApiData"),
                 b => b.MigrationsAssembly(typeof(MovieAPIDbContext).Assembly.FullName))
             );
 

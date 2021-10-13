@@ -15,6 +15,23 @@ namespace API.Persistence.Repository
         {
 
         }
+
+        public async Task<Movie> GetByIdAndOwnerId(Guid id, Guid userId)
+        {
+            return await _dbContext.Movies
+                .Where(m => m.Id == id && m.OwnerId == userId)
+                .Include(m => m.Category)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Movie>> GetByOwnerId(Guid userId)
+        {
+            return await _dbContext.Movies
+                .Where(m => m.OwnerId == userId)
+                .Include(m => m.Category)
+                .ToListAsync();
+        }
+
         public async Task<bool> IsMovieNameUniqueForUserAndCategory(string entityName, Guid uid, Guid categoryId)
         {
             return await _dbContext.Movies.AnyAsync(m =>

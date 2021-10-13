@@ -26,8 +26,6 @@
     <Folder Include="Features\Category\Query\GetAll\" />
     <Folder Include="Features\Movies\Command\Delete\" />
     <Folder Include="Features\Movies\Command\Update\" />
-    <Folder Include="Features\Movies\Query\Get\" />
-    <Folder Include="Features\Movies\Query\GetAll\" />
   </ItemGroup>
 
   <ItemGroup>
