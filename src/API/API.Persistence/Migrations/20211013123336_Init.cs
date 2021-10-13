@@ -76,17 +76,17 @@ namespace API.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "UserProfiles",
                 columns: new[] { "Id", "Role", "Subject", "SubscriptionLevel" },
-                values: new object[] { new Guid("f0a1bf2c-a78f-4b3a-8351-b775e8c0ce9d"), "Basic", "ed965454-a117-4024-8e48-406b58876c9d", "FreeUser" });
+                values: new object[] { new Guid("f0a1bf2c-a78f-4b3a-8351-b775e8c0ce9d"), "Basic", "2472ab44-47c0-4882-913a-c791fa23f525", "FreeUser" });
 
             migrationBuilder.InsertData(
                 table: "Movies",
                 columns: new[] { "Id", "CategoryId", "CreatedBy", "CreatedDate", "Description", "LastModifiedBy", "LastModifiedDate", "Name", "OwnerId" },
-                values: new object[] { new Guid("987bdc2b-b8a5-4e65-889d-3ff3fb2436fa"), new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "A fantastic description", new Guid("00000000-0000-0000-0000-000000000000"), null, "A fantastic movie", new Guid("f0a1bf2c-a78f-4b3a-8351-b775e8c0ce9d") });
+                values: new object[] { new Guid("e9ad242e-03da-4d1c-b76e-fd70cfe7f565"), new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "A fantastic description", new Guid("00000000-0000-0000-0000-000000000000"), null, "A fantastic movie", new Guid("f0a1bf2c-a78f-4b3a-8351-b775e8c0ce9d") });
 
             migrationBuilder.InsertData(
                 table: "Movies",
                 columns: new[] { "Id", "CategoryId", "CreatedBy", "CreatedDate", "Description", "LastModifiedBy", "LastModifiedDate", "Name", "OwnerId" },
-                values: new object[] { new Guid("0e6902c9-5c93-4d9b-868a-e42b2c71b4e8"), new Guid("6313179f-7837-473a-a4d5-a5571b43e6a6"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "A musical description", new Guid("00000000-0000-0000-0000-000000000000"), null, "A musical movie", new Guid("f0a1bf2c-a78f-4b3a-8351-b775e8c0ce9d") });
+                values: new object[] { new Guid("f2a685b8-1480-40e3-b7f1-ca92eaf78ff3"), new Guid("6313179f-7837-473a-a4d5-a5571b43e6a6"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "A musical description", new Guid("00000000-0000-0000-0000-000000000000"), null, "A musical movie", new Guid("f0a1bf2c-a78f-4b3a-8351-b775e8c0ce9d") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_Name",
