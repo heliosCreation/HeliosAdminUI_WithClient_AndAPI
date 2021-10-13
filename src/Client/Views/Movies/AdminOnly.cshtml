@@ -1,0 +1,39 @@
+﻿
+@model Movies.Client.Models.UserInfoViewModel
+
+@{
+    ViewData["Title"] = "AdminOnly";
+}
+
+<h1>Display of your Credential.</h1>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Claim Type
+                </th>
+                <th>
+                    Claim Value
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.UserInfoDictionnary)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Key)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,20 @@
+﻿@model Movies.Client.Models.OrderMovie
+
+@{
+    ViewData["Title"] = "OrderMovie";
+}
+
+<h1>OrderMovie</h1>
+
+<div class="container">
+    <div class="h3 bottomMarginDefault">Order your favourite movie.</div>
+
+    <div class="text bottomMarginSmall">We've got this address on record for you:</div>
+
+    <div class="text text-info bottomMarginSmall">@Model.Address</div>
+
+    <div class="text">If this isn't correct, please contact us.</div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
