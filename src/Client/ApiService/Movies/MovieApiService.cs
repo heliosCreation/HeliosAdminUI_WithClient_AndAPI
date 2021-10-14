@@ -78,6 +78,7 @@ namespace Movies.Client.ApiService
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
 
             response.EnsureSuccessStatusCode();
+            
             var stream = await response.Content.ReadAsStreamAsync();
             var movies = await JsonSerializer.DeserializeAsync<List<Movie>>(stream, _options);
             return movies;

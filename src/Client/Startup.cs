@@ -48,6 +48,16 @@ namespace Movies.Client
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.Use(async (context, next) =>
+            {
+                await next();
+                var status = context.Response.StatusCode;
+                if (status > 299 || status < 200)
+                {
+                    context.Request.Path = "/Home/Error";
+                    await next();
+                }
+            });
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
