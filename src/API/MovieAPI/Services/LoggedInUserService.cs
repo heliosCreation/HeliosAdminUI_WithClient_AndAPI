@@ -14,6 +14,6 @@ namespace MovieAPI.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public Guid UserId => Guid.Parse(_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier));
+        public Guid UserId { get { return Guid.Parse(_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier)); } }
     }
 }

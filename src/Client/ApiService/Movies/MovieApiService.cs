@@ -72,7 +72,7 @@ namespace Movies.Client.ApiService
 
             var request = new HttpRequestMessage(
                 HttpMethod.Get,
-                "/movies");
+                "/movie");
 
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
@@ -87,7 +87,7 @@ namespace Movies.Client.ApiService
         {
             var client = _httpClientFactory.CreateClient("MovieAPIClient");
 
-            var request = new HttpRequestMessage(HttpMethod.Get, $"/movies/{id}");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/movie/{id}");
 
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
@@ -101,7 +101,7 @@ namespace Movies.Client.ApiService
         {
             var client = _httpClientFactory.CreateClient("MovieAPIClient");
 
-            var request = new HttpRequestMessage(HttpMethod.Post, "/movies")
+            var request = new HttpRequestMessage(HttpMethod.Post, "/movie")
             {
                 Content = JsonContent.Create(movie)
             };
@@ -116,7 +116,7 @@ namespace Movies.Client.ApiService
         {
             var client = _httpClientFactory.CreateClient("MovieAPIClient");
 
-            var request = new HttpRequestMessage(HttpMethod.Put, $"/movies/{movie.Id}")
+            var request = new HttpRequestMessage(HttpMethod.Put, $"/movie/{movie.Id}")
             {
                 Content = JsonContent.Create(movie)
             };
@@ -131,7 +131,7 @@ namespace Movies.Client.ApiService
         {
             var client = _httpClientFactory.CreateClient("MovieAPIClient");
 
-            var request = new HttpRequestMessage(HttpMethod.Delete, $"movies/{id}");
+            var request = new HttpRequestMessage(HttpMethod.Delete, $"movie/{id}");
 
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);

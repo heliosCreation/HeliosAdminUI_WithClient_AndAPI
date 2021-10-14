@@ -28,9 +28,9 @@ namespace Movies.Client
             services.AddAuthentificationService();
             services.AddAuthorizationAndPolicies();
 
+            services.AddHttpContextAccessor();
             services.AddTransient<BearerTokenHandler>();
             services.ProduceHttpClientFactory();
-            services.AddHttpContextAccessor();
 
             services.AddScoped<IMovieApiService, MovieApiService>();
         }

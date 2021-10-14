@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace API.Application.Features.ApplicationUserProfile.Query
+namespace API.Application.Features.ApplicationUserProfiles.Query
 {
     public class ApplicationUserProfileVm
     {

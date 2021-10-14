@@ -13,7 +13,6 @@ namespace API.Application.Features.Movies.Command.Create
     {
         private readonly IMapper _mapper;
         private readonly ILoggedInUserService _loggedInUserService;
-        private readonly ICategoryRepository _categoryRepository;
         private readonly IMovieRepository _movieRepository;
 
         public CreateMovieCommandHandler(

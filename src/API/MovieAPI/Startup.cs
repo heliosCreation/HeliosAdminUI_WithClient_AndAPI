@@ -1,5 +1,6 @@
 using API.Application;
 using API.Application.Contracts.Identity;
+using API.Identity;
 using API.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,16 +25,32 @@ namespace MovieAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplication();
+            services.AddIdentityService(Configuration);
             services.AddPersistence(Configuration);
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
+            services.AddSwaggerGen(opt =>
+            {
+                opt.SwaggerDoc(
+                    "v1",
+                    new OpenApiInfo
+                    {
+                        Version = "v1",
+                        Title = "Movie - WebApi",
+                        Description = "This Api will be responsible for managing the movies and completing claim bases.",
+                        Contact = new OpenApiContact
+                        {
+                            Name = "HeliosCreation",
+                            Email = "reliableDevelopment@hotmail.com",
+                        }
+                    });
+            });
+
+
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MovieAPI", Version = "v1" });
-            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +64,8 @@ namespace MovieAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 

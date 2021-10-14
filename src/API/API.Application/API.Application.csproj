@@ -14,15 +14,14 @@
 
   <ItemGroup>
     <Folder Include="Contracts\Infrastructure\" />
-    <Folder Include="Features\ApplicationUserProfile\Command\Update\" />
-    <Folder Include="Features\ApplicationUserProfile\Command\Delete\" />
-    <Folder Include="Features\ApplicationUserProfile\Command\Create\" />
-    <Folder Include="Features\ApplicationUserProfile\Query\GetAll\" />
-    <Folder Include="Features\Category\Command\Delete\" />
-    <Folder Include="Features\Category\Command\Update\" />
-    <Folder Include="Features\Category\Command\Create\" />
-    <Folder Include="Features\Category\Query\Get\" />
-    <Folder Include="Features\Category\Query\GetAll\" />
+    <Folder Include="Features\ApplicationUserProfiles\Command\Update\" />
+    <Folder Include="Features\ApplicationUserProfiles\Command\Delete\" />
+    <Folder Include="Features\ApplicationUserProfiles\Command\Create\" />
+    <Folder Include="Features\ApplicationUserProfiles\Query\GetAll\" />
+    <Folder Include="Features\Categories\Command\Delete\" />
+    <Folder Include="Features\Categories\Command\Update\" />
+    <Folder Include="Features\Categories\Command\Create\" />
+    <Folder Include="Features\Categories\Query\GetAll\" />
     <Folder Include="Features\Movies\Command\Delete\" />
     <Folder Include="Features\Movies\Command\Update\" />
   </ItemGroup>
