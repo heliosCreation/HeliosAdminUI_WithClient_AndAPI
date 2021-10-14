@@ -49,7 +49,7 @@ namespace API.Persistence.Migrations
                         {
                             Id = new Guid("f0a1bf2c-a78f-4b3a-8351-b775e8c0ce9d"),
                             Role = "Basic",
-                            Subject = "ed965454-a117-4024-8e48-406b58876c9d",
+                            Subject = "2472ab44-47c0-4882-913a-c791fa23f525",
                             SubscriptionLevel = "FreeUser"
                         });
                 });
@@ -162,7 +162,7 @@ namespace API.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("987bdc2b-b8a5-4e65-889d-3ff3fb2436fa"),
+                            Id = new Guid("e9ad242e-03da-4d1c-b76e-fd70cfe7f565"),
                             CategoryId = new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -173,7 +173,7 @@ namespace API.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0e6902c9-5c93-4d9b-868a-e42b2c71b4e8"),
+                            Id = new Guid("f2a685b8-1480-40e3-b7f1-ca92eaf78ff3"),
                             CategoryId = new Guid("6313179f-7837-473a-a4d5-a5571b43e6a6"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),

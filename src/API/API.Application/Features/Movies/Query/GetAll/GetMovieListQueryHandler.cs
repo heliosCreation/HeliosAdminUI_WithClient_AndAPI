@@ -23,7 +23,7 @@ namespace API.Application.Features.Movies.Query.GetAll
         }
         public async Task<List<MovieVm>> Handle(GetMovieListQuery request, CancellationToken cancellationToken)
         {
-            var entities = await _movieRepository.ListAllAsync();
+            var entities = await _movieRepository.GetByOwnerId(_loggedInUserService.UserId);
             return _mapper.Map<List<MovieVm>>(entities);
         }
     }

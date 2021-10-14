@@ -18,7 +18,6 @@ namespace API.Persistence
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IMovieRepository, MovieRepository>();
-            services.AddScoped<IApplicationUserProfileRepository, ApplicationUserProfileRepository>();
 
             return services;
         }

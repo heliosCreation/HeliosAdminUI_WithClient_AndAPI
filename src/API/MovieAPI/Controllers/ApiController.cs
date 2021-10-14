@@ -7,7 +7,7 @@ namespace MovieAPI.Controllers
 {
     [Produces("application/json")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class ApiController : ControllerBase
     {
         private readonly IMediator _mediator;

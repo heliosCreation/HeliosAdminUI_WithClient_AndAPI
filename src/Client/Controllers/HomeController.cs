@@ -34,7 +34,7 @@ namespace Movies.Client.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult MyStatusCode(int code)
+        public IActionResult ErrorHandling(int code)
         {
             switch (code)
             {

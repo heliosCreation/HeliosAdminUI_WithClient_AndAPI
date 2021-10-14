@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movies.Client", "src\Client
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "src\ApiGateway\ApiGateway.csproj", "{2FB21C58-AFD8-47A2-A278-F184BD13CA65}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Identity", "API.Identity\API.Identity.csproj", "{A56AE2D7-F11F-4D31-A14F-A46A534E37FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{2FB21C58-AFD8-47A2-A278-F184BD13CA65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FB21C58-AFD8-47A2-A278-F184BD13CA65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FB21C58-AFD8-47A2-A278-F184BD13CA65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A56AE2D7-F11F-4D31-A14F-A46A534E37FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A56AE2D7-F11F-4D31-A14F-A46A534E37FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A56AE2D7-F11F-4D31-A14F-A46A534E37FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A56AE2D7-F11F-4D31-A14F-A46A534E37FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +96,7 @@ Global
 		{FC74BB3F-D795-4A08-AFB9-3D5242966EF5} = {67F3D040-D167-4398-ACA6-11A6D1309723}
 		{30F66EF2-9A24-4ADB-B91C-04E4873A3F9F} = {DA4AD004-9FCE-444F-8710-440824F26D54}
 		{2FB21C58-AFD8-47A2-A278-F184BD13CA65} = {7A2B46A4-0F37-4FFE-8687-C090E3E508AC}
+		{A56AE2D7-F11F-4D31-A14F-A46A534E37FA} = {958B0841-E656-4038-AD8C-AE5F04B27D14}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {67644E66-143D-4EF9-B5C8-7D04681C3BDB}

@@ -38,7 +38,7 @@ namespace Movies.Client.PostConfigurationOptions
 
                     var request = new HttpRequestMessage(
                         HttpMethod.Get,
-                        $"/ApplicationUserProfiles/{subject}");
+                        $"/ApplicationUserProfile/{subject}");
 
                     request.SetBearerToken(
                         ticketReceivedContext.Properties.GetTokenValue("access_token"));

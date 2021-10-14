@@ -8,18 +8,13 @@ namespace Movies.Client.Models
         public Guid Id { get; set; }
 
         [Required]
-        public string Title { get; set; }
+        public string Name { get; set; }
 
         [Required]
-        public string Genre { get; set; }
+        public string Category { get; set; }
 
-        [Required]
-        public string Rating { get; set; }
-
-        [Required]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
-        public DateTime ReleaseDate { get; set; }
+        [StringLength(500)]
+        public string Description { get; set; }
 
         [Required]
         public string ImageUrl { get; set; }
