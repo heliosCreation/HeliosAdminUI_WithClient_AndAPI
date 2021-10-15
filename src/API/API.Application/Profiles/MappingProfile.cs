@@ -11,6 +11,9 @@ namespace API.Application.Profiles
     {
         public MappingProfile()
         {
+            CreateMap<Category, CategoryDto>();
+            CreateMap<Category, CategoryVm>();
+
             CreateMap<CreateMovieCommand, Movie>();
             CreateMap<Movie, CreateMovieDto>();
             CreateMap<Movie, MovieVm>();
@@ -18,8 +21,6 @@ namespace API.Application.Profiles
 
             CreateMap<ApplicationUserProfile, ApplicationUserProfileVm>();
 
-            CreateMap<Category, CategoryDto>();
-            CreateMap<Category, CategoryVm>();
         }
     }
 }

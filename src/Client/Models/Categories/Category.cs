@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Movies.Client.Models
+namespace Movies.Client.Models.Categories
 {
     public class Category
     {

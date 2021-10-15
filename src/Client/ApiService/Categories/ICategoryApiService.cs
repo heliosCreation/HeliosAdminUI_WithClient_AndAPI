@@ -1,4 +1,5 @@
 ﻿using Movies.Client.Models;
+using Movies.Client.Models.Categories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

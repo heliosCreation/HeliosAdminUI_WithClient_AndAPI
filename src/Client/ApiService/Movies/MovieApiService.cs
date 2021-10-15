@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Movies.Client.ApiService.Movies;
 using Movies.Client.Models;
+using Movies.Client.Models.Movies;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -78,7 +78,7 @@ namespace Movies.Client.ApiService
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
 
             response.EnsureSuccessStatusCode();
-            
+
             var stream = await response.Content.ReadAsStreamAsync();
             var movies = await JsonSerializer.DeserializeAsync<List<Movie>>(stream, _options);
             return movies;

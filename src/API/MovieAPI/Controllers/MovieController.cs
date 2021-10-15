@@ -26,6 +26,7 @@ namespace MovieAPI.Controllers
             return Ok(await Mediator.Send(new GetMovieQuery(id)));
         }
 
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
