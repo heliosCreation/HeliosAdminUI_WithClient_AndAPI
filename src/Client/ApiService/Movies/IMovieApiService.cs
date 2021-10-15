@@ -10,7 +10,7 @@ namespace Movies.Client.ApiService.Movies
     {
         Task<IEnumerable<Movie>> GetMovies();
         Task<Movie> GetMovie(Guid? id);
-        Task CreateMovie(Movie movie);
+        Task CreateMovie(CreateMovieModel movie);
         Task UpdateMovie(Movie movie);
         Task DeleteMovie(Guid id);
 

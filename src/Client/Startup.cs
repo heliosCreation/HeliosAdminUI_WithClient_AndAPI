@@ -8,6 +8,7 @@ using Movies.Client.ApiService.Categories;
 using Movies.Client.ApiService.Movies;
 using Movies.Client.Extensions.ServiceExtensions;
 using Movies.Client.Handlers;
+using AutoMapper;
 
 namespace Movies.Client
 {
@@ -33,6 +34,7 @@ namespace Movies.Client
             services.AddTransient<BearerTokenHandler>();
             services.ProduceHttpClientFactory();
 
+            services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IMovieApiService, MovieApiService>();
             services.AddScoped<ICategoryApiService, CategoryApiService>();
 

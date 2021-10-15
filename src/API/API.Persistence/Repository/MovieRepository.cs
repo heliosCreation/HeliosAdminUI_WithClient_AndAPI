@@ -41,7 +41,7 @@ namespace API.Persistence.Repository
 
         public async Task<bool> IsMovieNameUniqueForUserAndCategory(string entityName, Guid uid, Guid categoryId)
         {
-            return await _dbContext.Movies.AnyAsync(m =>
+            return !await _dbContext.Movies.AnyAsync(m =>
             m.Name == entityName &&
             m.OwnerId == uid &&
             m.CategoryId == categoryId);

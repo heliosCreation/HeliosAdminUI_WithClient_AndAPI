@@ -98,7 +98,7 @@ namespace Movies.Client.ApiService
             return movie;
         }
 
-        public async Task CreateMovie(Movie movie)
+        public async Task CreateMovie(CreateMovieModel movie)
         {
             var client = _httpClientFactory.CreateClient("MovieAPIClient");
 

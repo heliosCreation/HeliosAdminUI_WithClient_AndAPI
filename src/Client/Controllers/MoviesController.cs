@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
@@ -17,13 +18,16 @@ namespace Movies.Client.Controllers
     [Authorize]
     public class MoviesController : Controller
     {
+        private readonly IMapper _mapper;
         private readonly IMovieApiService _movieApiService;
         private readonly ICategoryApiService _categoryApiService;
 
         public MoviesController(
+            IMapper mapper,
             IMovieApiService movieApiService,
             ICategoryApiService categoryApiService)
         {
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _movieApiService = movieApiService ?? throw new ArgumentNullException(nameof(movieApiService));
             _categoryApiService = categoryApiService ?? throw new ArgumentNullException(nameof(categoryApiService));
         }
@@ -87,6 +91,7 @@ namespace Movies.Client.Controllers
                 await _movieApiService.CreateMovie(movie);
                 return RedirectToAction(nameof(Index));
             }
+            movie.Categories = await _categoryApiService.ListCategory();
             return View(movie);
         }
 

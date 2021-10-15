@@ -1,4 +1,5 @@
 ﻿using API.Application.Contracts.Identity;
+using API.Application.Features.Movies.Command.Create;
 using API.Application.Features.Movies.Query.Get;
 using API.Application.Features.Movies.Query.GetAll;
 using Microsoft.AspNetCore.Authorization;
@@ -31,6 +32,12 @@ namespace MovieAPI.Controllers
         public async Task<IActionResult> GetAll()
         {
             return Ok(await Mediator.Send(new GetMovieListQuery()));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CreateMovieCommand command)
+        {
+            return Ok(await Mediator.Send(command));
         }
     }
 }
