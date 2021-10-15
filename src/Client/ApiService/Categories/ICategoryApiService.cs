@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Movies.Client.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Movies.Client.ApiService.Categories
 {
-    public class ICategoryApiService
+    public interface ICategoryApiService
     {
+        Task<Category> GetCategory();
+        Task<List<Category>> ListCategory();
     }
 }
