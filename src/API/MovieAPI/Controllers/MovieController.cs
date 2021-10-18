@@ -1,6 +1,7 @@
 ﻿using API.Application.Contracts.Identity;
 using API.Application.Features.Movies.Command.Create;
 using API.Application.Features.Movies.Command.Delete;
+using API.Application.Features.Movies.Command.Update;
 using API.Application.Features.Movies.Query.Get;
 using API.Application.Features.Movies.Query.GetAll;
 using Microsoft.AspNetCore.Authorization;
@@ -31,6 +32,19 @@ namespace MovieAPI.Controllers
         public async Task<IActionResult> Post([FromBody] CreateMovieCommand command)
         {
             return Ok(await Mediator.Send(command));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update(Guid id, UpdateMovieCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest();
+            }
+
+            await Mediator.Send(command);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
