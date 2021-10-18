@@ -46,5 +46,14 @@ namespace API.Persistence.Repository
             m.OwnerId == uid &&
             m.CategoryId == categoryId);
         }
+
+        public async Task<bool> IsMovieNameUniqueForUserAndCategoryOnUpdate(string entityName,Guid id, Guid uid, Guid categoryId)
+        {
+            return !await _dbContext.Movies.AnyAsync(m =>
+            m.Name == entityName &&
+            m.OwnerId == uid &&
+            m.CategoryId == categoryId &&
+            m.Id != id );
+        }
     }
 }

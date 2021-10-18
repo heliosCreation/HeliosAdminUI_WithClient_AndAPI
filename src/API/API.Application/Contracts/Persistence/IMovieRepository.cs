@@ -13,5 +13,6 @@ namespace API.Application.Contracts.Persistence
 
         Task<List<Movie>> GetByOwnerId(Guid userId);
         Task<List<Movie>> GetAllTest();
+        Task<bool> IsMovieNameUniqueForUserAndCategoryOnUpdate(string entityName, Guid id, Guid uid, Guid categoryId);
     }
 }
