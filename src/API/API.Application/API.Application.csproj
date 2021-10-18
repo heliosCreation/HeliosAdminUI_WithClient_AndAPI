@@ -21,9 +21,6 @@
     <Folder Include="Features\Categories\Command\Delete\" />
     <Folder Include="Features\Categories\Command\Update\" />
     <Folder Include="Features\Categories\Command\Create\" />
-    <Folder Include="Features\Categories\Query\GetAll\" />
-    <Folder Include="Features\Movies\Command\Delete\" />
-    <Folder Include="Features\Movies\Command\Update\" />
   </ItemGroup>
 
   <ItemGroup>

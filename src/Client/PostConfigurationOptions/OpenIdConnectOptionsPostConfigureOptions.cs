@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Extensions.Options;
 using Movies.Client.Models;
+using Movies.Client.Models.ApplicationUserProfiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;

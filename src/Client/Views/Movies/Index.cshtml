@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Movies.Client.Models.Movie>
+﻿@model IEnumerable<Movie>
 
 @{
     ViewData["Title"] = "Index";
@@ -41,7 +41,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category)
+                @Html.DisplayFor(modelItem => item.Category.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)

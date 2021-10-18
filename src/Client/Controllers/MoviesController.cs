@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Movies.Client.ApiService.Categories;
 using Movies.Client.ApiService.Movies;
 using Movies.Client.Models;
+using Movies.Client.Models.Movies;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,11 +18,18 @@ namespace Movies.Client.Controllers
     [Authorize]
     public class MoviesController : Controller
     {
+        private readonly IMapper _mapper;
         private readonly IMovieApiService _movieApiService;
+        private readonly ICategoryApiService _categoryApiService;
 
-        public MoviesController(IMovieApiService movieApiService)
+        public MoviesController(
+            IMapper mapper,
+            IMovieApiService movieApiService,
+            ICategoryApiService categoryApiService)
         {
-            _movieApiService = movieApiService;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _movieApiService = movieApiService ?? throw new ArgumentNullException(nameof(movieApiService));
+            _categoryApiService = categoryApiService ?? throw new ArgumentNullException(nameof(categoryApiService));
         }
 
         [Authorize(Roles = "admin , IsAdmin")]
@@ -41,7 +51,6 @@ namespace Movies.Client.Controllers
             return View(new UserInfoViewModel(userInfoDictionnary));
         }
 
-        // GET: Movies
         public async Task<IActionResult> Index()
         {
             await WriteOutIdentityInformation();
@@ -63,9 +72,11 @@ namespace Movies.Client.Controllers
         }
 
         // GET: Movies/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var vm = new CreateMovieModel();
+            vm.Categories = await _categoryApiService.ListCategory();
+            return View(vm);
         }
 
         // POST: Movies/Create
@@ -73,13 +84,14 @@ namespace Movies.Client.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Movie movie)
+        public async Task<IActionResult> Create(CreateMovieModel movie)
         {
             if (ModelState.IsValid)
             {
                 await _movieApiService.CreateMovie(movie);
                 return RedirectToAction(nameof(Index));
             }
+            movie.Categories = await _categoryApiService.ListCategory();
             return View(movie);
         }
 
@@ -136,13 +148,13 @@ namespace Movies.Client.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpGet]
-        [Authorize(Policy = "CanOrderMovie")]
-        public IActionResult OrderMovie()
-        {
-            var address = HttpContext.User?.Claims.FirstOrDefault(c => c.Type == "address")?.Value;
-            return View(new OrderMovie(address));
-        }
+        //[HttpGet]
+        //[Authorize(Policy = "CanOrderMovie")]
+        //public IActionResult OrderMovie()
+        //{
+        //    var address = HttpContext.User?.Claims.FirstOrDefault(c => c.Type == "address")?.Value;
+        //    return View(new OrderMovie(address));
+        //}
 
         public async Task WriteOutIdentityInformation()
         {

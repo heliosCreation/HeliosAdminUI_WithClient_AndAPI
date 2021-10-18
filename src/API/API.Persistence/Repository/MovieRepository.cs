@@ -23,7 +23,14 @@ namespace API.Persistence.Repository
                 .Include(m => m.Category)
                 .FirstOrDefaultAsync();
         }
+        public async Task<List<Movie>> GetAllTest()
+        {
+            var x =  await _dbContext.Movies
+                .Include(m => m.Category)
+                .ToListAsync();
 
+            return x;
+        }
         public async Task<List<Movie>> GetByOwnerId(Guid userId)
         {
             return await _dbContext.Movies
@@ -34,7 +41,7 @@ namespace API.Persistence.Repository
 
         public async Task<bool> IsMovieNameUniqueForUserAndCategory(string entityName, Guid uid, Guid categoryId)
         {
-            return await _dbContext.Movies.AnyAsync(m =>
+            return !await _dbContext.Movies.AnyAsync(m =>
             m.Name == entityName &&
             m.OwnerId == uid &&
             m.CategoryId == categoryId);

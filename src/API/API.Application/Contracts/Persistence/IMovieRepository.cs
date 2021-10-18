@@ -12,5 +12,6 @@ namespace API.Application.Contracts.Persistence
         Task<Movie> GetByIdAndOwnerId(Guid id, Guid userId);
 
         Task<List<Movie>> GetByOwnerId(Guid userId);
+        Task<List<Movie>> GetAllTest();
     }
 }

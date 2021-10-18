@@ -1,6 +1,8 @@
 {
   "Routes": [
     //// Movie API -- https://localhost:5001 ////
+
+    ///MOVIE
     {
       "DownstreamPathTemplate": "/api/v1/Movie",
       "DownstreamScheme": "https",
@@ -37,6 +39,46 @@
         "AllowedScopes": []
       }
     },
+
+    ///Category
+    {
+      "DownstreamPathTemplate": "/api/v1/Category/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/Category/{id}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      //Response Cache
+      "FileCacheOptions": { "TtlSeconds": 15 },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityApiKey",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Category",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/Category",
+      "UpstreamHttpMethod": [ "Get"],
+      //Response Cache
+      "FileCacheOptions": { "TtlSeconds": 15 },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "IdentityApiKey",
+        "AllowedScopes": []
+      }
+    },
+
+    ///Application User profiles
     {
       "DownstreamPathTemplate": "/api/v1/ApplicationUserProfile/{subject}",
       "DownstreamScheme": "https",
