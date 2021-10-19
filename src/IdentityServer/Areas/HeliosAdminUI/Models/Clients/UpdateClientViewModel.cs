@@ -28,6 +28,8 @@ namespace IdentityServer.Areas.HeliosAdminUI.Models.Clients
         public bool RequireRequestObject { get; set; } = false;
         public bool RequirePkce { get; set; } = true;
         public bool AllowPlainTextPkce { get; set; } = false;
+
+        [Display(Name = "Allow Offline Access")]
         public bool AllowOfflineAccess { get; set; }
         public bool AllowAccessTokensViaBrowser { get; set; } = false;
 
@@ -37,7 +39,8 @@ namespace IdentityServer.Areas.HeliosAdminUI.Models.Clients
         public string RedirectUris
         {
             get => _redirectUris;
-            set => _redirectUris = String.Format("{0}{1}", value, "/signin-oidc");
+            set => _redirectUris = String.Format("{0}{1}", value,  "/signin-oidc");
+
         }
 
         [Display(Name = "Allowed grant type")]
@@ -60,7 +63,7 @@ namespace IdentityServer.Areas.HeliosAdminUI.Models.Clients
                         new {Id = "ImplicitAndClientCredentials", Value = "Implicit and client credentials"},
                         new {Id = "Code", Value = "Code"},
                         new {Id = "CodeAndClientCredentials", Value = "Code and client credentials"},
-                        new {Id = "Hybrid", Value = "Code"},
+                        new {Id = "Hybrid", Value = "Hybrid"},
                         new {Id = "HybridAndClientCredentials", Value = "Hybrid and client credentials"},
                         new {Id = "ClientCredentials", Value = "Client credentials"},
                         new {Id = "ResourceOwnerPassword", Value = "Resource owner password"},
@@ -166,7 +169,7 @@ namespace IdentityServer.Areas.HeliosAdminUI.Models.Clients
         public string FrontChannelLogoutUri
         {
             get => _frontChannelLogoutUri;
-            set => _frontChannelLogoutUri = String.Format("{0}{1}", value, "/signout-oidc");
+            set => _frontChannelLogoutUri = String.Format("{0}{1}", value,  "/signout-oidc");
         }
 
         private string _postLogoutRedirectUris;

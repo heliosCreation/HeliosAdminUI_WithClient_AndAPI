@@ -41,12 +41,9 @@ namespace Movies.Client.Extensions.ServiceExtensions
                 opt.Scope.Add("email");
                 //opt.Scope.Add("country");
                 opt.Scope.Add("movieAPI");
-
-                //Some claims are filtered by the middleware pipeline. With this command, we remove the filter.
-                //opt.ClaimActions.Remove("nbf");
+                opt.Scope.Add("offline_access");
                 opt.ClaimActions.MapAllExcept("sid", "idp", "s_hash", "auth_time");
                 //opt.ClaimActions.MapUniqueJsonKey("country", "country");
-
                 opt.SaveTokens = true;
                 opt.GetClaimsFromUserInfoEndpoint = true;
 
