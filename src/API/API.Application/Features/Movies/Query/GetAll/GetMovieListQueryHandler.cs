@@ -23,9 +23,9 @@ namespace API.Application.Features.Movies.Query.GetAll
         }
         public async Task<List<MovieVm>> Handle(GetMovieListQuery request, CancellationToken cancellationToken)
         {
-            var entitiesBis = await _movieRepository.GetAllTest();
-            //var entities = await _movieRepository.GetByOwnerId(_loggedInUserService.UserId);
-            var result = _mapper.Map<List<MovieVm>>(entitiesBis);
+            //var entitiesBis = await _movieRepository.GetAllTest();
+            var entities = await _movieRepository.GetByOwnerId(_loggedInUserService.UserId);
+            var result = _mapper.Map<List<MovieVm>>(entities);
 
             return result;
         }

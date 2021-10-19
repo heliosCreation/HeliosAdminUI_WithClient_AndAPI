@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace API.Persistence.Repository
@@ -25,7 +24,7 @@ namespace API.Persistence.Repository
         }
         public async Task<List<Movie>> GetAllTest()
         {
-            var x =  await _dbContext.Movies
+            var x = await _dbContext.Movies
                 .Include(m => m.Category)
                 .ToListAsync();
 
@@ -47,13 +46,13 @@ namespace API.Persistence.Repository
             m.CategoryId == categoryId);
         }
 
-        public async Task<bool> IsMovieNameUniqueForUserAndCategoryOnUpdate(string entityName,Guid id, Guid uid, Guid categoryId)
+        public async Task<bool> IsMovieNameUniqueForUserAndCategoryOnUpdate(string entityName, Guid id, Guid uid, Guid categoryId)
         {
             return !await _dbContext.Movies.AnyAsync(m =>
             m.Name == entityName &&
             m.OwnerId == uid &&
             m.CategoryId == categoryId &&
-            m.Id != id );
+            m.Id != id);
         }
     }
 }

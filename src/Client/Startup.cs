@@ -57,7 +57,7 @@ namespace Movies.Client
             {
                 await next();
                 var status = context.Response.StatusCode;
-                if (status > 299 || status < 200)
+                if (status >= 400)
                 {
                     context.Request.Path = "/Home/Error";
                     await next();

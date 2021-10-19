@@ -11,7 +11,7 @@ namespace Movies.Client.ApiService.Movies
         Task<IEnumerable<Movie>> GetMovies();
         Task<Movie> GetMovie(Guid? id);
         Task CreateMovie(CreateMovieModel movie);
-        Task UpdateMovie(Movie movie);
+        Task UpdateMovie(UpdateMovieModel movie);
         Task DeleteMovie(Guid id);
 
         Task<UserInfoViewModel> GetUserInfo();
