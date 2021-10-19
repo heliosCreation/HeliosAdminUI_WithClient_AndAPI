@@ -73,9 +73,11 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-4">
-                                    <LabelInfo asp-for="RedirectUris" information-category="1"></LabelInfo>
+                                    <LabelInfo asp-for="RedirectUris"></LabelInfo>
                                     <div class="input-group">
-                                        <input asp-for="RedirectUris" class="form-control" />
+                                        <input asp-for="RedirectUris"
+                                               value="@Model.RedirectUris.Replace("/signin-oidc","")"
+                                               class="form-control" />
                                         <div class="input-group-append">
                                             <span class="input-group-text">/signin-oidc</span>
                                         </div>
@@ -84,9 +86,11 @@
                                 </div>
 
                                 <div class="form-group col-4">
-                                    <LabelInfo asp-for="FrontChannelLogoutUri" information-category="1"></LabelInfo>
+                                    <LabelInfo asp-for="FrontChannelLogoutUri"></LabelInfo>
                                     <div class="input-group">
-                                        <input asp-for="FrontChannelLogoutUri" class="form-control" />
+                                        <input asp-for="FrontChannelLogoutUri" 
+                                               value="@Model.FrontChannelLogoutUri.Replace("/signout-oidc", "")"
+                                               class="form-control" />
                                         <div class="input-group-append">
                                             <span class="input-group-text">/signout-oidc</span>
                                         </div>
@@ -96,7 +100,9 @@
                                 <div class="form-group col-4">
                                     <LabelInfo asp-for="PostLogoutRedirectUris" information-category="1"></LabelInfo>
                                     <div class="input-group">
-                                        <input asp-for="PostLogoutRedirectUris" class="form-control" />
+                                        <input asp-for="PostLogoutRedirectUris"
+                                               value="@Model.PostLogoutRedirectUris.Replace("/signout-callback-oidc","")"
+                                               class="form-control" />
                                         <div class="input-group-append">
                                             <span class="input-group-text">/signout-callback-oidc</span>
                                         </div>
@@ -169,6 +175,37 @@
 
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn w-100 collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <strong class="h5">Refresh Token<i class="bi bi-caret-down-fill"></i></strong>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingThree">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class=" form-group col-6">
+                                    <LabelInfo asp-for="AllowOfflineAccess"></LabelInfo>
+                                    <input asp-for="AllowOfflineAccess" />
+                                </div>
+                                <div class=" form-group col-6">
+                                    <LabelInfo asp-for="UpdateAccessTokenClaimsOnRefresh"></LabelInfo>
+                                    <input asp-for="UpdateAccessTokenClaimsOnRefresh" />
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    <LabelInfo asp-for="AccessTokenLifetime"></LabelInfo>
+                                    <input asp-for="AccessTokenLifetime" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group row mt-2">
 
                     <div class="col-2">
