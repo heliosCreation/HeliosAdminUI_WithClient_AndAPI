@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Movies.Client.Controllers
@@ -58,8 +59,6 @@ namespace Movies.Client.Controllers
 
             return View(movies);
         }
-
-        // GET: Movies/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -71,7 +70,6 @@ namespace Movies.Client.Controllers
             return View(movie);
         }
 
-        // GET: Movies/Create
         public async Task<IActionResult> Create()
         {
             var vm = new CreateMovieModel();
@@ -79,9 +77,6 @@ namespace Movies.Client.Controllers
             return View(vm);
         }
 
-        // POST: Movies/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateMovieModel movie)
@@ -96,8 +91,9 @@ namespace Movies.Client.Controllers
         }
 
         // GET: Movies/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid? id, bool isSuccess = false)
         {
+            ViewBag.isSuccess = isSuccess;
             if (id == null)
             {
                 return NotFound();
@@ -108,13 +104,16 @@ namespace Movies.Client.Controllers
             {
                 return NotFound();
             }
-            return View(movie);
+            var vm = _mapper.Map<UpdateMovieModel>(movie);
+            vm.Categories = await _categoryApiService.ListCategory();
+
+            return View(vm);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, Movie movie)
+        public async Task<IActionResult> Edit(Guid id, UpdateMovieModel movie)
         {
             if (id != movie.Id)
             {
@@ -124,7 +123,8 @@ namespace Movies.Client.Controllers
             if (ModelState.IsValid)
             {
                 await _movieApiService.UpdateMovie(movie);
-                return RedirectToAction(nameof(Index));
+                Thread.Sleep(2000);
+                return RedirectToAction(nameof(Edit), new { id = movie.Id ,isSuccess = true});
             }
             return View(movie);
         }

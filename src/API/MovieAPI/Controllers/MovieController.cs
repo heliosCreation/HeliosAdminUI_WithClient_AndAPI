@@ -50,7 +50,7 @@ namespace MovieAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            return Ok(new DeleteMovieCommand(id));
+            return Ok( await Mediator.Send(new DeleteMovieCommand(id)));
         }
     }
 }

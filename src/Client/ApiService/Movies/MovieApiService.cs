@@ -113,7 +113,7 @@ namespace Movies.Client.ApiService
             response.EnsureSuccessStatusCode();
         }
 
-        public async Task UpdateMovie(Movie movie)
+        public async Task UpdateMovie(UpdateMovieModel movie)
         {
             var client = _httpClientFactory.CreateClient("MovieAPIClient");
 

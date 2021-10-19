@@ -7,6 +7,7 @@ namespace Movies.Client.Profiles
     {
         public MappingProfile()
         {
+            CreateMap<Movie, UpdateMovieModel>();
         }
     }
 }
