@@ -56,7 +56,6 @@ namespace Movies.Client.Controllers
         {
             await WriteOutIdentityInformation();
             var movies = await _movieApiService.GetMovies();
-
             return View(movies);
         }
         public async Task<IActionResult> Details(Guid? id)
