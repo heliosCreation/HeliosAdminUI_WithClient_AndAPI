@@ -55,8 +55,12 @@ namespace Movies.Client.Controllers
         public async Task<IActionResult> Index()
         {
             await WriteOutIdentityInformation();
-            var movies = await _movieApiService.GetMovies();
-            return View(movies);
+            var result = await _movieApiService.GetMovies();
+            if (!result.Succeeded)
+            {
+                return RedirectToAction("ErrorHandling", "Home", new {code = result.StatusCode });
+            }
+            return View(result.DataList);
         }
         public async Task<IActionResult> Details(Guid? id)
         {
