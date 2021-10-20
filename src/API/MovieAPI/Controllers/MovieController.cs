@@ -28,7 +28,8 @@ namespace MovieAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateMovieCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            var res = await Mediator.Send(command);
+            return Ok(res);
         }
 
         [HttpPut("{id}")]

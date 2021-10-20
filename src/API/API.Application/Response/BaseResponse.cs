@@ -25,6 +25,8 @@ namespace API.Application.Response
 
         public string Message { get; set; }
 
-        public IEnumerable<string> ErrorMessages { get; set; }
+        public int StatusCode { get; set; }
+
+        public List<string> ErrorMessages { get; set; }
     }
 }
