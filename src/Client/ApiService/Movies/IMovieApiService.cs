@@ -8,13 +8,12 @@ namespace Movies.Client.ApiService.Movies
 {
     public interface IMovieApiService
     {
-        //Task<IEnumerable<Movie>> GetMovies();
-        Task<Movie> GetMovie(Guid? id);
+        Task<BaseResponse<Movie>> GetMovies();
+        Task<BaseResponse<Movie>> GetMovie(Guid? id);
         Task CreateMovie(CreateMovieModel movie);
         Task UpdateMovie(UpdateMovieModel movie);
         Task DeleteMovie(Guid id);
 
         Task<UserInfoViewModel> GetUserInfo();
-        Task<BaseResponse<Movie>> GetMovies();
     }
 }

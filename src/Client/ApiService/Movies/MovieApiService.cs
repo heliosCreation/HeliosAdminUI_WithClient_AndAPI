@@ -74,29 +74,21 @@ namespace Movies.Client.ApiService
         public async Task<BaseResponse<Movie>> GetMovies()
         {
             var client = _httpClientFactory.CreateClient("MovieAPIClient");
-
-            var request = new HttpRequestMessage(
-                HttpMethod.Get,
-                "/movie");
-
+            var request = new HttpRequestMessage(HttpMethod.Get,"/movie");
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
 
             return  await _apiResponseParserService.ParseResponse(response, true);
         }
 
-        public async Task<Movie> GetMovie(Guid? id)
+        public async Task<BaseResponse<Movie>> GetMovie(Guid? id)
         {
             var client = _httpClientFactory.CreateClient("MovieAPIClient");
-
             var request = new HttpRequestMessage(HttpMethod.Get, $"/movie/{id}");
-
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            var stream = await response.Content.ReadAsStreamAsync();
-            var movie = await JsonSerializer.DeserializeAsync<Movie>(stream, _options);
-            return movie;
+            return await _apiResponseParserService.ParseResponse(response, false);
+
         }
 
         public async Task CreateMovie(CreateMovieModel movie)

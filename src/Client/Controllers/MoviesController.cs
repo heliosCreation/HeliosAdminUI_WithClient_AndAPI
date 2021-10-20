@@ -69,8 +69,13 @@ namespace Movies.Client.Controllers
                 return NotFound();
             }
 
-            var movie = await _movieApiService.GetMovie(id);
-            return View(movie);
+            var result = await _movieApiService.GetMovie(id);
+            if (!result.Succeeded)
+            {
+                return RedirectToAction("ErrorHandling", "Home", new { code = result.StatusCode });
+
+            }
+            return View(result.Data);
         }
 
         public async Task<IActionResult> Create()
