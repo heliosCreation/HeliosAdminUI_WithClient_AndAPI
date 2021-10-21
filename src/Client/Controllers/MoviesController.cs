@@ -10,7 +10,7 @@ using Movies.Client.Models.Movies;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -58,7 +58,7 @@ namespace Movies.Client.Controllers
             var result = await _movieApiService.GetMovies();
             if (!result.Succeeded)
             {
-                return RedirectToAction("ErrorHandling", "Home", new {code = result.StatusCode });
+                return RedirectToAction("ErrorHandling", "Home", new { code = result.StatusCode });
             }
             return View(result.DataList);
         }
@@ -91,11 +91,23 @@ namespace Movies.Client.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _movieApiService.CreateMovie(movie);
-                return RedirectToAction(nameof(Index));
+                 var result = await _movieApiService.CreateMovie(movie);
+                if (!result.Succeeded)
+                {
+                    if (result.StatusCode == 401)
+                    {
+                        return RedirectToAction("ErrorHandling", "Home", new { code = result.StatusCode });
+                    }
+                    foreach (var error in result.ErrorMessages)
+                    {
+                        ModelState.AddModelError(string.Empty, error); ;
+                    }
+                    movie.Categories = await _categoryApiService.ListCategory();
+                    return View(movie);
+                }
             }
-            movie.Categories = await _categoryApiService.ListCategory();
-            return View(movie);
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: Movies/Edit/5
@@ -107,12 +119,12 @@ namespace Movies.Client.Controllers
                 return NotFound();
             }
 
-            var movie = await _movieApiService.GetMovie(id);
-            if (movie == null)
+            var result = await _movieApiService.GetMovie(id);
+            if (result.Data == null)
             {
                 return NotFound();
             }
-            var vm = _mapper.Map<UpdateMovieModel>(movie);
+            var vm = _mapper.Map<UpdateMovieModel>(result.Data);
             vm.Categories = await _categoryApiService.ListCategory();
 
             return View(vm);
@@ -130,9 +142,21 @@ namespace Movies.Client.Controllers
 
             if (ModelState.IsValid)
             {
-                await _movieApiService.UpdateMovie(movie);
-                Thread.Sleep(2000);
-                return RedirectToAction(nameof(Edit), new { id = movie.Id ,isSuccess = true});
+                var result = await _movieApiService.UpdateMovie(movie);
+                if (!result.Succeeded)
+                {
+                    if (result.StatusCode == 401)
+                    {
+                        return RedirectToAction("ErrorHandling", "Home", new { code = result.StatusCode });
+                    }
+                    foreach (var error in result.ErrorMessages)
+                    {
+                        ModelState.AddModelError(string.Empty, error); ;
+                    }
+                    movie.Categories = await _categoryApiService.ListCategory();
+                    return View(movie);
+                }
+                return RedirectToAction(nameof(Edit), new { id = movie.Id, isSuccess = true });
             }
             return View(movie);
         }
@@ -144,15 +168,23 @@ namespace Movies.Client.Controllers
                 return NotFound();
             }
 
-            var movie = await _movieApiService.GetMovie(id);
-            return View(movie);
+            var result =  await _movieApiService.GetMovie(id);
+            if (!result.Succeeded)
+            {
+                return RedirectToAction("ErrorHandling", "Home", new { code = result.StatusCode });
+            }
+            return View(result.Data);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            await _movieApiService.DeleteMovie(id);
+            var result = await _movieApiService.DeleteMovie(id);
+            if (!result.Succeeded)
+            {
+                return RedirectToAction("ErrorHandling", "Home", new { code = result.StatusCode });
+            }
             return RedirectToAction(nameof(Index));
         }
 

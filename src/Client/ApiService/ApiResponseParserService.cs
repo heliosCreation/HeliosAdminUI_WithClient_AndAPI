@@ -32,6 +32,12 @@ namespace Movies.Client.ApiService
                     case HttpStatusCode.NotFound:
                         result.StatusCode = 404;
                         break;
+                    case HttpStatusCode.BadRequest:
+                        result.StatusCode = 400;
+                        var errorsFromStream = await response.Content.ReadAsStreamAsync();
+                        var errors =  await JsonSerializer.DeserializeAsync<BaseResponse<T>>(errorsFromStream, _options);
+                        result.ErrorMessages = errors.ErrorMessages;
+                        break;
                     default:
                         result.StatusCode = 500;
                         break;

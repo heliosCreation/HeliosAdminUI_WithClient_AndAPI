@@ -1,7 +1,6 @@
 ﻿using Movies.Client.Models;
 using Movies.Client.Models.Movies;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Movies.Client.ApiService.Movies
@@ -10,9 +9,9 @@ namespace Movies.Client.ApiService.Movies
     {
         Task<BaseResponse<Movie>> GetMovies();
         Task<BaseResponse<Movie>> GetMovie(Guid? id);
-        Task CreateMovie(CreateMovieModel movie);
-        Task UpdateMovie(UpdateMovieModel movie);
-        Task DeleteMovie(Guid id);
+        Task<BaseResponse<Movie>> CreateMovie(CreateMovieModel movie);
+        Task<BaseResponse<Movie>> UpdateMovie(UpdateMovieModel movie);
+        Task<BaseResponse<Movie>> DeleteMovie(Guid id);
 
         Task<UserInfoViewModel> GetUserInfo();
     }

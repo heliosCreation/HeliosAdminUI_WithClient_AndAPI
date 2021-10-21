@@ -8,6 +8,7 @@ namespace Movies.Client.ApiService
 
         public int StatusCode { get; set; }
 
+        public IEnumerable<string> ErrorMessages { get; set; }
         public T Data { get; set; }
 
         public IEnumerable<T> DataList { get; set; }

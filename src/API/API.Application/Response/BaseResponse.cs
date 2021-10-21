@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 
 namespace API.Application.Response
 {
@@ -25,7 +26,7 @@ namespace API.Application.Response
 
         public string Message { get; set; }
 
-        public int StatusCode { get; set; }
+        public int StatusCode { get; set; } = (int)HttpStatusCode.OK;
 
         public List<string> ErrorMessages { get; set; }
     }

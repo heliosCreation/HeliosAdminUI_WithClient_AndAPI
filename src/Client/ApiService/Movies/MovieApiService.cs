@@ -91,7 +91,7 @@ namespace Movies.Client.ApiService
 
         }
 
-        public async Task CreateMovie(CreateMovieModel movie)
+        public async Task<BaseResponse<Movie>> CreateMovie(CreateMovieModel movie)
         {
             var client = _httpClientFactory.CreateClient("MovieAPIClient");
 
@@ -102,11 +102,11 @@ namespace Movies.Client.ApiService
 
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-
-            response.EnsureSuccessStatusCode();
+            var result = await _apiResponseParserService.ParseResponse(response, false, false);
+            return result; 
         }
 
-        public async Task UpdateMovie(UpdateMovieModel movie)
+        public async Task<BaseResponse<Movie>> UpdateMovie(UpdateMovieModel movie)
         {
             var client = _httpClientFactory.CreateClient("MovieAPIClient");
 
@@ -117,11 +117,11 @@ namespace Movies.Client.ApiService
 
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            return await _apiResponseParserService.ParseResponse(response, false, false);
 
-            response.EnsureSuccessStatusCode();
         }
 
-        public async Task DeleteMovie(Guid id)
+        public async Task<BaseResponse<Movie>> DeleteMovie(Guid id)
         {
             var client = _httpClientFactory.CreateClient("MovieAPIClient");
 
@@ -129,8 +129,7 @@ namespace Movies.Client.ApiService
 
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-
-            response.EnsureSuccessStatusCode();
+            return await _apiResponseParserService.ParseResponse(response, false, false);
         }
 
     }
