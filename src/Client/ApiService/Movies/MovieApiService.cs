@@ -78,7 +78,7 @@ namespace Movies.Client.ApiService
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
 
-            return  await _apiResponseParserService.ParseResponse(response, true);
+            return  await _apiResponseParserService.ParseResponse(response,true, true);
         }
 
         public async Task<BaseResponse<Movie>> GetMovie(Guid? id)
@@ -87,7 +87,7 @@ namespace Movies.Client.ApiService
             var request = new HttpRequestMessage(HttpMethod.Get, $"/movie/{id}");
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-            return await _apiResponseParserService.ParseResponse(response, false);
+            return await _apiResponseParserService.ParseResponse(response,true, false);
 
         }
 

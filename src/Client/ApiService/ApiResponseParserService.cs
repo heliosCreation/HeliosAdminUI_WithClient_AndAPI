@@ -16,34 +16,42 @@ namespace Movies.Client.ApiService
             _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
         }
-        public async Task<BaseResponse<T>> ParseResponse(HttpResponseMessage response, bool listExpected)
+        public async Task<BaseResponse<T>> ParseResponse(HttpResponseMessage response,bool expectData, bool listExpected)
         {
             var result = new BaseResponse<T>();
-            if (!response.IsSuccessStatusCode)
+            result.Succeeded = response.IsSuccessStatusCode;
+
+            if (!result.Succeeded)
             {
-                result.Succeeded = false;
-                if (response.StatusCode == HttpStatusCode.Unauthorized ||
-                    response.StatusCode == HttpStatusCode.Forbidden)
+                switch (response.StatusCode)
                 {
-                    result.StatusCode = 401;
-          
-                }
-                else if (response.StatusCode == HttpStatusCode.NotFound)
-                {
-                    result.StatusCode = 404;
+                    case HttpStatusCode.Unauthorized:
+                    case HttpStatusCode.Forbidden:
+                        result.StatusCode = 401;
+                        break;
+                    case HttpStatusCode.NotFound:
+                        result.StatusCode = 404;
+                        break;
+                    default:
+                        result.StatusCode = 500;
+                        break;
                 }
                 return result;
             }
 
-            result.Succeeded = true;
+
             var stream = await response.Content.ReadAsStreamAsync();
-            return await CreateListOrSingleObjectResponse(stream, listExpected, result);
+            return await CreateListOrSingleObjectResponse(stream,expectData, listExpected, result);
 
         }
 
 
-        private async Task<BaseResponse<T>> CreateListOrSingleObjectResponse(Stream stream, bool listExpected, BaseResponse<T> response)
+        private async Task<BaseResponse<T>> CreateListOrSingleObjectResponse(Stream stream, bool expectData, bool listExpected, BaseResponse<T> response)
         {
+            if (!expectData)
+            {
+                return response;
+            }
             if (!listExpected)
             {
                 var data = await JsonSerializer.DeserializeAsync<T>(stream, _options);
