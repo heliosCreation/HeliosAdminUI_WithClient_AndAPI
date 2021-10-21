@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using MovieAPI.Filters;
 using MovieAPI.Services;
 
 namespace MovieAPI
@@ -23,6 +24,8 @@ namespace MovieAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers(o => o.Filters.Add(typeof(ResponseMappingFilter)));
+
             services.AddApplication();
             services.AddIdentityService(Configuration);
             services.AddPersistence(Configuration);
@@ -48,7 +51,6 @@ namespace MovieAPI
 
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
 
-            services.AddControllers();
 
         }
 

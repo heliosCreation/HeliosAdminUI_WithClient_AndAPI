@@ -8,7 +8,7 @@ namespace Movies.Client.Models.Movies
 {
     public class CreateMovieModel
     {
-        [Required]
+        //[Required]
         public string Name { get; set; }
 
         [StringLength(500)]

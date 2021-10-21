@@ -35,6 +35,7 @@ namespace Movies.Client
             services.ProduceHttpClientFactory();
 
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped(typeof(IApiResponseParserService<>), typeof(ApiResponseParserService<>));
             services.AddScoped<IMovieApiService, MovieApiService>();
             services.AddScoped<ICategoryApiService, CategoryApiService>();
 
