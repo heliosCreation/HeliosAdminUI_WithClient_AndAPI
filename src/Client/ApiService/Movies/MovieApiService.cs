@@ -18,6 +18,7 @@ namespace Movies.Client.ApiService
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IApiResponseParserService<Movie> _apiResponseParserService;
         private readonly HttpContext _httpContext;
+        private readonly HttpClient _client;
 
         public MovieApiService(
             IHttpClientFactory httpClientFactory,
@@ -27,6 +28,7 @@ namespace Movies.Client.ApiService
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
             _apiResponseParserService = apiResponseParserService ?? throw new ArgumentNullException(nameof(apiResponseParserService));
             _httpContext = httpContextAccessor.HttpContext;
+            _client = _httpClientFactory.CreateClient("MovieAPIClient");
         }
 
 
@@ -70,62 +72,45 @@ namespace Movies.Client.ApiService
 
         public async Task<BaseResponse<Movie>> GetMovies()
         {
-            var client = _httpClientFactory.CreateClient("MovieAPIClient");
             var request = new HttpRequestMessage(HttpMethod.Get, "/movie");
-            var response = await client.SendAsync(
-                request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            var response = await _client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
 
             return await _apiResponseParserService.ParseResponse(response, true, true);
         }
 
         public async Task<BaseResponse<Movie>> GetMovie(Guid? id)
         {
-            var client = _httpClientFactory.CreateClient("MovieAPIClient");
             var request = new HttpRequestMessage(HttpMethod.Get, $"/movie/{id}");
-            var response = await client.SendAsync(
-                request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            var response = await _client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             return await _apiResponseParserService.ParseResponse(response, true, false);
 
         }
 
         public async Task<BaseResponse<Movie>> CreateMovie(CreateMovieModel movie)
         {
-            var client = _httpClientFactory.CreateClient("MovieAPIClient");
-
             var request = new HttpRequestMessage(HttpMethod.Post, "/movie")
             {
                 Content = JsonContent.Create(movie)
             };
-
-            var response = await client.SendAsync(
-                request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-            var result = await _apiResponseParserService.ParseResponse(response, true, false);
-            return result;
+            var response = await _client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            return await _apiResponseParserService.ParseResponse(response, true, false);
         }
 
         public async Task<BaseResponse<Movie>> UpdateMovie(UpdateMovieModel movie)
         {
-            var client = _httpClientFactory.CreateClient("MovieAPIClient");
-
             var request = new HttpRequestMessage(HttpMethod.Put, $"/movie/{movie.Id}")
             {
                 Content = JsonContent.Create(movie)
             };
-
-            var response = await client.SendAsync(
-                request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            var response = await _client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             return await _apiResponseParserService.ParseResponse(response, false, false);
 
         }
 
         public async Task<BaseResponse<Movie>> DeleteMovie(Guid id)
         {
-            var client = _httpClientFactory.CreateClient("MovieAPIClient");
-
             var request = new HttpRequestMessage(HttpMethod.Delete, $"movie/{id}");
-
-            var response = await client.SendAsync(
-                request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            var response = await _client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             return await _apiResponseParserService.ParseResponse(response, false, false);
         }
 
