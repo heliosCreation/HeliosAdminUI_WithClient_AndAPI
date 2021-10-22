@@ -16,6 +16,14 @@ namespace Movies.Client.ApiService
             _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
         }
+
+        /// <summary>
+        /// Parse the status code of an HttpResponse message and generate the BaseResponse use by the client accordingly.
+        /// </summary>
+        /// <param name="response"></param>
+        /// <param name="expectData"></param>
+        /// <param name="listExpected"></param>
+        /// <returns></returns>
         public async Task<BaseResponse<T>> ParseResponse(HttpResponseMessage response,bool expectData, bool listExpected)
         {
             var result = new BaseResponse<T>();
@@ -51,7 +59,15 @@ namespace Movies.Client.ApiService
 
         }
 
-
+        /// <summary>
+        /// Determine if data is expected from the api call( Aka, T, List<T>).
+        /// If not, return the a valid BaseResponse.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="expectData"></param>
+        /// <param name="listExpected"></param>
+        /// <param name="response"></param>
+        /// <returns> A BaseResponse object.</returns>
         private async Task<BaseResponse<T>> CreateListOrSingleObjectResponse(Stream stream, bool expectData, bool listExpected, BaseResponse<T> response)
         {
             if (!expectData)
