@@ -1,5 +1,6 @@
 ﻿using API.Application.Contracts.Identity;
 using API.Application.Enum;
+using API.Application.Response;
 using API.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace API.Application.Features.ApplicationUserProfiles.Query.Get
 {
-    public class GetApplicationUserProfileQueryHandler : IRequestHandler<GetApplicationUserProfileQuery, ApplicationUserProfileVm>
+    public class GetApplicationUserProfileQueryHandler : IRequestHandler<GetApplicationUserProfileQuery, ApiResponse<ApplicationUserProfileVm>>
     {
         private readonly IMapper _mapper;
         private readonly IApplicatonUserProfileRepository _applicatonUserProfileRepository;
@@ -22,7 +23,7 @@ namespace API.Application.Features.ApplicationUserProfiles.Query.Get
             _applicatonUserProfileRepository = applicatonUserProfileRepository ?? throw new ArgumentNullException(nameof(applicatonUserProfileRepository));
         }
 
-        public async Task<ApplicationUserProfileVm> Handle(GetApplicationUserProfileQuery request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<ApplicationUserProfileVm>> Handle(GetApplicationUserProfileQuery request, CancellationToken cancellationToken)
         {
             var entity = await _applicatonUserProfileRepository.GetApplicationUserProfileBySubject(request.Sub);
             if (entity == null)
@@ -37,7 +38,10 @@ namespace API.Application.Features.ApplicationUserProfiles.Query.Get
                 await _applicatonUserProfileRepository.AddAsync(entity);
             }
 
-            return _mapper.Map<ApplicationUserProfileVm>(entity);
+            return new ApiResponse<ApplicationUserProfileVm>
+            {
+                Data = _mapper.Map<ApplicationUserProfileVm>(entity)
+            };
         }
     }
 }

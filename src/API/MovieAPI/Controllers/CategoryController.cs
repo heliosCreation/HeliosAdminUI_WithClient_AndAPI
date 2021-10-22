@@ -17,7 +17,8 @@ namespace MovieAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllCategory()
         {
-            return Ok(await Mediator.Send(new GetAllCategoryQuery()));
+            var res = await Mediator.Send(new GetAllCategoryQuery());
+            return Ok(res);
         }
     }
 }

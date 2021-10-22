@@ -10,8 +10,6 @@ using Movies.Client.Models.Movies;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Net;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Movies.Client.Controllers
@@ -78,10 +76,13 @@ namespace Movies.Client.Controllers
             return View(result.Data);
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(bool isSuccess = false, Guid createdId = default(Guid))
         {
+            ViewBag.isSuccess = isSuccess;
+            ViewBag.createdId = createdId;
             var vm = new CreateMovieModel();
-            vm.Categories = await _categoryApiService.ListCategory();
+            var categoryCall = await _categoryApiService.ListCategory();
+            vm.Categories = categoryCall.DataList;
             return View(vm);
         }
 
@@ -91,7 +92,7 @@ namespace Movies.Client.Controllers
         {
             if (ModelState.IsValid)
             {
-                 var result = await _movieApiService.CreateMovie(movie);
+                var result = await _movieApiService.CreateMovie(movie);
                 if (!result.Succeeded)
                 {
                     if (result.StatusCode == 401)
@@ -102,11 +103,13 @@ namespace Movies.Client.Controllers
                     {
                         ModelState.AddModelError(string.Empty, error); ;
                     }
-                    movie.Categories = await _categoryApiService.ListCategory();
-                    return View(movie);
+                    var categoryCall = await _categoryApiService.ListCategory();
+                    movie.Categories = categoryCall.DataList; return View(movie);
                 }
+
+                return RedirectToAction(nameof(Create),new { isSuccess = true, createdId = result.Data.Id });
             }
-            return RedirectToAction(nameof(Index));
+            return View(movie);
 
         }
 
@@ -125,8 +128,8 @@ namespace Movies.Client.Controllers
                 return NotFound();
             }
             var vm = _mapper.Map<UpdateMovieModel>(result.Data);
-            vm.Categories = await _categoryApiService.ListCategory();
-
+            var categoryCall = await _categoryApiService.ListCategory();
+            vm.Categories = categoryCall.DataList;
             return View(vm);
         }
 
@@ -153,8 +156,8 @@ namespace Movies.Client.Controllers
                     {
                         ModelState.AddModelError(string.Empty, error); ;
                     }
-                    movie.Categories = await _categoryApiService.ListCategory();
-                    return View(movie);
+                    var categoryCall = await _categoryApiService.ListCategory();
+                    movie.Categories = categoryCall.DataList; return View(movie);
                 }
                 return RedirectToAction(nameof(Edit), new { id = movie.Id, isSuccess = true });
             }
@@ -168,7 +171,7 @@ namespace Movies.Client.Controllers
                 return NotFound();
             }
 
-            var result =  await _movieApiService.GetMovie(id);
+            var result = await _movieApiService.GetMovie(id);
             if (!result.Succeeded)
             {
                 return RedirectToAction("ErrorHandling", "Home", new { code = result.StatusCode });

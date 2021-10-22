@@ -74,14 +74,14 @@ namespace Movies.Client.ApiService
             {
                 return response;
             }
+            var deserialized = await JsonSerializer.DeserializeAsync<BaseResponse<T>>(stream, _options);
+
             if (!listExpected)
             {
-                var data = await JsonSerializer.DeserializeAsync<T>(stream, _options);
-                response.Data = data;
+                response.Data = deserialized.Data;
                 return response;
             }
-            var dataList = await JsonSerializer.DeserializeAsync<IEnumerable<T>>(stream, _options);
-            response.DataList = dataList;
+            response.DataList = deserialized.DataList;
             return response;
         }
 

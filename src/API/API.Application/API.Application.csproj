@@ -5,22 +5,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Contracts\Infrastructure\**" />
+    <Compile Remove="Features\ApplicationUserProfiles\Command\**" />
+    <Compile Remove="Features\ApplicationUserProfiles\Query\GetAll\**" />
+    <Compile Remove="Features\Categories\Command\**" />
+    <EmbeddedResource Remove="Contracts\Infrastructure\**" />
+    <EmbeddedResource Remove="Features\ApplicationUserProfiles\Command\**" />
+    <EmbeddedResource Remove="Features\ApplicationUserProfiles\Query\GetAll\**" />
+    <EmbeddedResource Remove="Features\Categories\Command\**" />
+    <None Remove="Contracts\Infrastructure\**" />
+    <None Remove="Features\ApplicationUserProfiles\Command\**" />
+    <None Remove="Features\ApplicationUserProfiles\Query\GetAll\**" />
+    <None Remove="Features\Categories\Command\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
 	<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
 	<PackageReference Include="FluentValidation" Version="10.3.3" />
 	<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.3" />
 	<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Contracts\Infrastructure\" />
-    <Folder Include="Features\ApplicationUserProfiles\Command\Update\" />
-    <Folder Include="Features\ApplicationUserProfiles\Command\Delete\" />
-    <Folder Include="Features\ApplicationUserProfiles\Command\Create\" />
-    <Folder Include="Features\ApplicationUserProfiles\Query\GetAll\" />
-    <Folder Include="Features\Categories\Command\Delete\" />
-    <Folder Include="Features\Categories\Command\Update\" />
-    <Folder Include="Features\Categories\Command\Create\" />
   </ItemGroup>
 
   <ItemGroup>

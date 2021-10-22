@@ -22,7 +22,8 @@ namespace MovieAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await Mediator.Send(new GetMovieListQuery()));
+            var res = await Mediator.Send(new GetMovieListQuery());
+            return Ok(res);
         }
 
         [HttpPost]

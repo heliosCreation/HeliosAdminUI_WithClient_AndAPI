@@ -1,15 +1,17 @@
 ﻿using API.Application.Contracts.Persistence;
 using API.Application.Exceptions;
+using API.Application.Response;
 using API.Domain.Entities;
 using AutoMapper;
 using MediatR;
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace API.Application.Features.Categories.Query.Get
 {
-    public class GetCategoryQueryHandler : IRequestHandler<GetCategoryQuery, CategoryVm>
+    public class GetCategoryQueryHandler : IRequestHandler<GetCategoryQuery, ApiResponse<CategoryVm>>
     {
         private readonly IMapper _mapper;
         private readonly ICategoryRepository _categoryRepository;
@@ -20,15 +22,19 @@ namespace API.Application.Features.Categories.Query.Get
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
         }
 
-        public async Task<CategoryVm> Handle(GetCategoryQuery request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<CategoryVm>> Handle(GetCategoryQuery request, CancellationToken cancellationToken)
         {
+            var response = new ApiResponse<CategoryVm>();
             var entity = await _categoryRepository.GetByIdAsync(request.Id);
             if (entity == null)
             {
-                throw new NotFoundException(nameof(Category), request.Id);
+                response.Succeeded = false;
+                response.StatusCode = (int)HttpStatusCode.NotFound;
+                return response;
             }
 
-            return _mapper.Map<CategoryVm>(entity);
+            response.Data = _mapper.Map<CategoryVm>(entity);
+            return response;
 
         }
     }
