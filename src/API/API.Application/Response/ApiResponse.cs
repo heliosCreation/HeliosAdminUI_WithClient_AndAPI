@@ -22,7 +22,7 @@ namespace API.Application.Response
             Message = message;
         }
 
-        public bool Succeeded { get; set; }
+        public bool Succeeded { get; set; } = true;
 
         public string Message { get; set; }
 

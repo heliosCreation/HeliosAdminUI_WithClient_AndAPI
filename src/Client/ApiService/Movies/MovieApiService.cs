@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Movies.Client.ApiService
@@ -19,7 +18,6 @@ namespace Movies.Client.ApiService
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IApiResponseParserService<Movie> _apiResponseParserService;
         private readonly HttpContext _httpContext;
-        private readonly JsonSerializerOptions _options;
 
         public MovieApiService(
             IHttpClientFactory httpClientFactory,
@@ -29,7 +27,6 @@ namespace Movies.Client.ApiService
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
             _apiResponseParserService = apiResponseParserService ?? throw new ArgumentNullException(nameof(apiResponseParserService));
             _httpContext = httpContextAccessor.HttpContext;
-            _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         }
 
 
@@ -74,11 +71,11 @@ namespace Movies.Client.ApiService
         public async Task<BaseResponse<Movie>> GetMovies()
         {
             var client = _httpClientFactory.CreateClient("MovieAPIClient");
-            var request = new HttpRequestMessage(HttpMethod.Get,"/movie");
+            var request = new HttpRequestMessage(HttpMethod.Get, "/movie");
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
 
-            return  await _apiResponseParserService.ParseResponse(response,true, true);
+            return await _apiResponseParserService.ParseResponse(response, true, true);
         }
 
         public async Task<BaseResponse<Movie>> GetMovie(Guid? id)
@@ -87,7 +84,7 @@ namespace Movies.Client.ApiService
             var request = new HttpRequestMessage(HttpMethod.Get, $"/movie/{id}");
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-            return await _apiResponseParserService.ParseResponse(response,true, false);
+            return await _apiResponseParserService.ParseResponse(response, true, false);
 
         }
 
@@ -103,7 +100,7 @@ namespace Movies.Client.ApiService
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             var result = await _apiResponseParserService.ParseResponse(response, true, false);
-            return result; 
+            return result;
         }
 
         public async Task<BaseResponse<Movie>> UpdateMovie(UpdateMovieModel movie)

@@ -9,6 +9,7 @@ using Movies.Client.ApiService.Movies;
 using Movies.Client.Extensions.ServiceExtensions;
 using Movies.Client.Handlers;
 using AutoMapper;
+using Movies.Client.ApiService.ApplicationUserProfiles;
 
 namespace Movies.Client
 {
@@ -36,6 +37,7 @@ namespace Movies.Client
 
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped(typeof(IApiResponseParserService<>), typeof(ApiResponseParserService<>));
+            services.AddScoped<IApplicationUserProfileApiService, ApplicationUserProfileApiService>();
             services.AddScoped<IMovieApiService, MovieApiService>();
             services.AddScoped<ICategoryApiService, CategoryApiService>();
 

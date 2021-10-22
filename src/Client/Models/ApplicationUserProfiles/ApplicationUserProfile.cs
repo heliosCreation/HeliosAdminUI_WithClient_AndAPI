@@ -2,7 +2,7 @@
 
 namespace Movies.Client.Models.ApplicationUserProfiles
 {
-    public class ApplicationUserProfileModel
+    public class ApplicationUserProfile
     {
         public Guid Id { get; set; }
         public string Subject { get; set; }

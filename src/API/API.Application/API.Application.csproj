@@ -6,10 +6,16 @@
 
   <ItemGroup>
     <Compile Remove="Contracts\Infrastructure\**" />
+    <Compile Remove="Features\ApplicationUserProfiles\Command\**" />
+    <Compile Remove="Features\ApplicationUserProfiles\Query\GetAll\**" />
     <Compile Remove="Features\Categories\Command\**" />
     <EmbeddedResource Remove="Contracts\Infrastructure\**" />
+    <EmbeddedResource Remove="Features\ApplicationUserProfiles\Command\**" />
+    <EmbeddedResource Remove="Features\ApplicationUserProfiles\Query\GetAll\**" />
     <EmbeddedResource Remove="Features\Categories\Command\**" />
     <None Remove="Contracts\Infrastructure\**" />
+    <None Remove="Features\ApplicationUserProfiles\Command\**" />
+    <None Remove="Features\ApplicationUserProfiles\Query\GetAll\**" />
     <None Remove="Features\Categories\Command\**" />
   </ItemGroup>
 
@@ -19,13 +25,6 @@
 	<PackageReference Include="FluentValidation" Version="10.3.3" />
 	<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.3" />
 	<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\ApplicationUserProfiles\Command\Update\" />
-    <Folder Include="Features\ApplicationUserProfiles\Command\Delete\" />
-    <Folder Include="Features\ApplicationUserProfiles\Command\Create\" />
-    <Folder Include="Features\ApplicationUserProfiles\Query\GetAll\" />
   </ItemGroup>
 
   <ItemGroup>
