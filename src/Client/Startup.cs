@@ -26,7 +26,8 @@ namespace Movies.Client
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews()
-                 .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
+                .AddRazorRuntimeCompilation()
+                .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
 
             services.AddAuthentificationService();
             services.AddAuthorizationAndPolicies();

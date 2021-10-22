@@ -191,14 +191,6 @@ namespace Movies.Client.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //[HttpGet]
-        //[Authorize(Policy = "CanOrderMovie")]
-        //public IActionResult OrderMovie()
-        //{
-        //    var address = HttpContext.User?.Claims.FirstOrDefault(c => c.Type == "address")?.Value;
-        //    return View(new OrderMovie(address));
-        //}
-
         public async Task WriteOutIdentityInformation()
         {
             //Get the saved identity token

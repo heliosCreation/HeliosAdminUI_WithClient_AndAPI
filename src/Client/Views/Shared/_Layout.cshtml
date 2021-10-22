@@ -24,31 +24,31 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Movies" asp-action="Index">Movies</a>
                         </li>
 
+                        <li class="nav-item ml-auto">
 
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Identity" asp-action="Logout">Logout</a>
-                            </li>
-                        }
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <div class="dropdown show">
+                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Hi @User.Identity.Name
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Identity" asp-action="Logout">Logout</a>
+                                    </div>
+                                </div>
+                            }
+                        </li>
+
                         @if (User.IsInRole("admin") || User.IsInRole("IsAdmin"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Movies" asp-action="AdminOnly">Admin Operation</a>
-                            </li>
-                        }
-                        @if ((await AuthorizationService.AuthorizeAsync(User, "CanOrderMovie")).Succeeded)
-                        {
-                            <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Movies" asp-action="OrderMovie">Order movie</a>
                             </li>
                         }
                     </ul>
