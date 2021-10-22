@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text.Json;
@@ -24,7 +23,7 @@ namespace Movies.Client.ApiService
         /// <param name="expectData"></param>
         /// <param name="listExpected"></param>
         /// <returns></returns>
-        public async Task<BaseResponse<T>> ParseResponse(HttpResponseMessage response,bool expectData, bool listExpected)
+        public async Task<BaseResponse<T>> ParseResponse(HttpResponseMessage response, bool expectData, bool listExpected)
         {
             var result = new BaseResponse<T>();
             result.Succeeded = response.IsSuccessStatusCode;
@@ -43,7 +42,7 @@ namespace Movies.Client.ApiService
                     case HttpStatusCode.BadRequest:
                         result.StatusCode = 400;
                         var errorsFromStream = await response.Content.ReadAsStreamAsync();
-                        var errors =  await JsonSerializer.DeserializeAsync<BaseResponse<T>>(errorsFromStream, _options);
+                        var errors = await JsonSerializer.DeserializeAsync<BaseResponse<T>>(errorsFromStream, _options);
                         result.ErrorMessages = errors.ErrorMessages;
                         break;
                     default:
@@ -55,7 +54,7 @@ namespace Movies.Client.ApiService
 
 
             var stream = await response.Content.ReadAsStreamAsync();
-            return await CreateListOrSingleObjectResponse(stream,expectData, listExpected, result);
+            return await CreateListOrSingleObjectResponse(stream, expectData, listExpected, result);
 
         }
 
