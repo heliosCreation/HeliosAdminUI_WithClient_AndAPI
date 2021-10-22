@@ -42,8 +42,6 @@ namespace Movies.Client.Controllers
                     return RedirectToAction("AccessDenied", "Authorization");
                 case 401:
                     return RedirectToAction("AccessDenied", "Authorization");
-                case 404:
-                    return RedirectToAction("AccessDenied", "Authorization");
                 default:
                     return RedirectToAction("Error", "Home");
             };
