@@ -1,4 +1,5 @@
-﻿using API.Application.Response;
+﻿using API.Application.Contracts.Persistence;
+using API.Application.Response;
 using FluentValidation;
 using MediatR;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace API.Application.Behaviour
 {
     public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+            where TRequest: IValidatable
             where TResponse : ApiResponse<TResponse>, new()
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace API.Application.Features.Movies.Command.Create
 {
-    public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommand, ApiResponse<CreateMovieDto>>
+    public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommand, ApiResponse<CreateMovieDto>>, IValidatable
     {
         private readonly IMapper _mapper;
         private readonly ILoggedInUserService _loggedInUserService;
