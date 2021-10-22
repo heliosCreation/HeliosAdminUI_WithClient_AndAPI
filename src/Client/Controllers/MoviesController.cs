@@ -81,7 +81,8 @@ namespace Movies.Client.Controllers
             ViewBag.isSuccess = isSuccess;
             ViewBag.createdId = createdId;
             var vm = new CreateMovieModel();
-            vm.Categories = await _categoryApiService.ListCategory();
+            var categoryCall = await _categoryApiService.ListCategory();
+            vm.Categories = categoryCall.DataList;
             return View(vm);
         }
 
@@ -102,8 +103,8 @@ namespace Movies.Client.Controllers
                     {
                         ModelState.AddModelError(string.Empty, error); ;
                     }
-                    movie.Categories = await _categoryApiService.ListCategory();
-                    return View(movie);
+                    var categoryCall = await _categoryApiService.ListCategory();
+                    movie.Categories = categoryCall.DataList; return View(movie);
                 }
 
                 return RedirectToAction(nameof(Create),new { isSuccess = true, createdId = result.Data.Id });
@@ -127,8 +128,8 @@ namespace Movies.Client.Controllers
                 return NotFound();
             }
             var vm = _mapper.Map<UpdateMovieModel>(result.Data);
-            vm.Categories = await _categoryApiService.ListCategory();
-
+            var categoryCall = await _categoryApiService.ListCategory();
+            vm.Categories = categoryCall.DataList;
             return View(vm);
         }
 
@@ -155,8 +156,8 @@ namespace Movies.Client.Controllers
                     {
                         ModelState.AddModelError(string.Empty, error); ;
                     }
-                    movie.Categories = await _categoryApiService.ListCategory();
-                    return View(movie);
+                    var categoryCall = await _categoryApiService.ListCategory();
+                    movie.Categories = categoryCall.DataList; return View(movie);
                 }
                 return RedirectToAction(nameof(Edit), new { id = movie.Id, isSuccess = true });
             }

@@ -6,8 +6,11 @@
 
   <ItemGroup>
     <Compile Remove="Contracts\Infrastructure\**" />
+    <Compile Remove="Features\Categories\Command\**" />
     <EmbeddedResource Remove="Contracts\Infrastructure\**" />
+    <EmbeddedResource Remove="Features\Categories\Command\**" />
     <None Remove="Contracts\Infrastructure\**" />
+    <None Remove="Features\Categories\Command\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,9 +26,6 @@
     <Folder Include="Features\ApplicationUserProfiles\Command\Delete\" />
     <Folder Include="Features\ApplicationUserProfiles\Command\Create\" />
     <Folder Include="Features\ApplicationUserProfiles\Query\GetAll\" />
-    <Folder Include="Features\Categories\Command\Delete\" />
-    <Folder Include="Features\Categories\Command\Update\" />
-    <Folder Include="Features\Categories\Command\Create\" />
   </ItemGroup>
 
   <ItemGroup>
