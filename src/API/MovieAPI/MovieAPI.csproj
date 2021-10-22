@@ -19,7 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\API.Application\API.Application.csproj" />
     <ProjectReference Include="..\API.Identity\API.Identity.csproj" />
-    <ProjectReference Include="..\API.Infrastructure\API.Infrastructure.csproj" />
     <ProjectReference Include="..\API.Persistence\API.Persistence.csproj" />
   </ItemGroup>
 

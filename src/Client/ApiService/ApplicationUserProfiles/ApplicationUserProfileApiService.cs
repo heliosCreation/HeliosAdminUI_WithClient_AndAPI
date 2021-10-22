@@ -20,7 +20,7 @@ namespace Movies.Client.ApiService.ApplicationUserProfiles
         {
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
             _apiResponseParserService = apiResponseParserService ?? throw new ArgumentNullException(nameof(apiResponseParserService));
-            _client = _httpClientFactory.CreateClient("MovieAPIClient");
+            _client = _httpClientFactory.CreateClient("BasicMovieAPIClient");
 
         }
 
