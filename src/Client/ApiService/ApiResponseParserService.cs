@@ -80,8 +80,8 @@ namespace Movies.Client.ApiService
                 response.Data = data;
                 return response;
             }
-            var dataList = await JsonSerializer.DeserializeAsync<IEnumerable<T>>(stream, _options);
-            response.DataList = dataList;
+            var deserialized = await JsonSerializer.DeserializeAsync<BaseResponse<T>>(stream, _options);
+            response.DataList = deserialized.DataList;
             return response;
         }
 

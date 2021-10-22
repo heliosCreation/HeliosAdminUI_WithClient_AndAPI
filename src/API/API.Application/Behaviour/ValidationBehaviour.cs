@@ -1,7 +1,6 @@
 ﻿using API.Application.Response;
 using FluentValidation;
 using MediatR;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 namespace API.Application.Behaviour
 {
     public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-            where TResponse : BaseResponse, new()
+            where TResponse : ApiResponse<TResponse>, new()
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
@@ -35,7 +34,7 @@ namespace API.Application.Behaviour
 
                     return new TResponse
                     {
-                        Success = false,
+                        Succeeded = false,
                         StatusCode = (int)HttpStatusCode.BadRequest,
                         ErrorMessages = failures.Select(f => f.ErrorMessage).ToList()
                     };

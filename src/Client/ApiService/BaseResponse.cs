@@ -11,6 +11,6 @@ namespace Movies.Client.ApiService
         public IEnumerable<string> ErrorMessages { get; set; }
         public T Data { get; set; }
 
-        public IEnumerable<T> DataList { get; set; }
+        public List<T> DataList { get; set; }
     }
 }
