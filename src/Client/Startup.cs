@@ -3,13 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Movies.Client.ApiService;
-using Movies.Client.ApiService.Categories;
-using Movies.Client.ApiService.Movies;
 using Movies.Client.Extensions.ServiceExtensions;
 using Movies.Client.Handlers;
-using AutoMapper;
-using Movies.Client.ApiService.ApplicationUserProfiles;
 
 namespace Movies.Client
 {
@@ -26,8 +21,7 @@ namespace Movies.Client
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews()
-                .AddRazorRuntimeCompilation()
-                .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
+                 .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
 
             services.AddAuthentificationService();
             services.AddAuthorizationAndPolicies();
@@ -37,10 +31,7 @@ namespace Movies.Client
             services.ProduceHttpClientFactory();
 
             services.AddAutoMapper(typeof(Startup));
-            services.AddScoped(typeof(IApiResponseParserService<>), typeof(ApiResponseParserService<>));
-            services.AddScoped<IApplicationUserProfileApiService, ApplicationUserProfileApiService>();
-            services.AddScoped<IMovieApiService, MovieApiService>();
-            services.AddScoped<ICategoryApiService, CategoryApiService>();
+            services.AddApiServices();
 
         }
 
