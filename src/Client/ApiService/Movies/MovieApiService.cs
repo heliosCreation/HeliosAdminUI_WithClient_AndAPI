@@ -102,7 +102,7 @@ namespace Movies.Client.ApiService
 
             var response = await client.SendAsync(
                 request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-            var result = await _apiResponseParserService.ParseResponse(response, false, false);
+            var result = await _apiResponseParserService.ParseResponse(response, true, false);
             return result; 
         }
 

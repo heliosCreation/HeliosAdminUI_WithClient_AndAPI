@@ -1,5 +1,6 @@
 ﻿using API.Application.Contracts.Identity;
 using API.Application.Contracts.Persistence;
+using API.Application.Response;
 using API.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace API.Application.Features.Movies.Command.Create
 {
-    public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommand, CreateMovieCommandResponse>
+    public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommand, ApiResponse<CreateMovieDto>>
     {
         private readonly IMapper _mapper;
         private readonly ILoggedInUserService _loggedInUserService;
@@ -24,13 +25,14 @@ namespace API.Application.Features.Movies.Command.Create
             _loggedInUserService = loggedInUserService ?? throw new ArgumentNullException(nameof(loggedInUserService));
             _movieRepository = movieRepository ?? throw new ArgumentNullException(nameof(movieRepository));
         }
-        public async Task<CreateMovieCommandResponse> Handle(CreateMovieCommand request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<CreateMovieDto>> Handle(CreateMovieCommand request, CancellationToken cancellationToken)
         {
+            var response = new ApiResponse<CreateMovieDto>();
             request.OwnerId = _loggedInUserService.UserId;
             var movieEntity = _mapper.Map<Movie>(request);
             var createdMovie = await _movieRepository.AddAsync(movieEntity);
-            var createdMovieDto = _mapper.Map<CreateMovieDto>(createdMovie);
-            return new CreateMovieCommandResponse { Createdmovie = createdMovieDto };
+            response.Data = _mapper.Map<CreateMovieDto>(createdMovie);
+            return response;
         }
     }
 }
