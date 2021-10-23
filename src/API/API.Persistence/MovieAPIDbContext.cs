@@ -38,11 +38,7 @@ namespace API.Persistence
             var DramaGuid = Guid.Parse("{BF3F3002-7E53-441E-8B76-F6280BE284AA}");
             var ActionGuid = Guid.Parse("{FE98F549-E790-4E9F-AA16-18C2292A2EE9}");
 
-            var defaultUserProfileId = Guid.Parse("{f0a1bf2c-a78f-4b3a-8351-b775e8c0ce9d}");
-
             CategorySeed.Seed(modelBuilder, FantasticGuid, musicalGuid, DramaGuid, ActionGuid);
-            MovieSeed.Seed(modelBuilder, defaultUserProfileId, FantasticGuid, musicalGuid);
-            ApplicationUserProfileSeed.Seed(modelBuilder, defaultUserProfileId);
         }
 
 
