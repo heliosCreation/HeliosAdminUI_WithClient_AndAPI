@@ -45,9 +45,9 @@ Will be at use here:
           </li>
         </ul>
   </li>
-  An API Gateway built with Ocelot, to route the Client request to the appropriate Api Endpoint.
-  <li>
   
+  <li>
+  An API Gateway built with Ocelot, to route the Client request to the appropriate Api Endpoint.
   </li>
 </ol>
  
@@ -56,10 +56,28 @@ Will be at use here:
  <i>General requirement</i> - <br/>
   In order for those projects to work, you'll need to have: <br/>
   <ul>
+  <li>
+    An IDE of your choice, but I'd really recommand Visual Studio 2019. Community version would be 100% fine. If you do not own it yet, take a look
+    <a href="https://visualstudio.microsoft.com/fr/"> here </a>.
+  </li>
     <li>
       An instance of SQL server installed. If you need help with that, here's a <a href="https://computingforgeeks.com/install-sql-server-developer-edition-on-windows-server/">cool guide</a>. 
     </li>
     <li>
-    The .Net Core 3.1 (<a href="https://dotnet.microsoft.com/download/dotnet/3.1"> Click here!</a>) and the .Net 5 (<a href="https://dotnet.microsoft.com/download/dotnet/5.0">Click here!</a>framework installed. 
+    The .Net Core 3.1 (<a href="https://dotnet.microsoft.com/download/dotnet/3.1"> Click here!</a>) and the .Net 5 (<a href="https://dotnet.microsoft.com/download/dotnet/5.0">Click here!</a> )framework installed. 
     </li>
-  </ul>,
+  </ul>
+  
+<h2> IS4 setup </h2>
+  For the installation of the Identity Server project and its understanding, there is a full README pretty well documented - in my opinion at least :open_hands: - that you
+  can find <a href="https://github.com/heliosCreation/IdentityServer-HeliosAdminUI">here</a>. 
+<h2> API Setup </h2>
+  The API will make use of a data store, so, before we can use it, we'll have to instantiate it. The migrations being already ready, you'll only have to Update the database <br/>
+  To do so, open your package manager, select the MovieAPI Project and type: 
+  
+ ```bash
+Update-database
+```
+And that should do the job. We are now ready to run. :fire:
+   
+
