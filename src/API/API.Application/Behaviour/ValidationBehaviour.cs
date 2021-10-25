@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 namespace API.Application.Behaviour
 {
     public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-            where TRequest: IValidatable
-            where TResponse : ApiResponse<TResponse>, new()
+            where TRequest : IRequest<TResponse>
+            where TResponse : BaseResponse,  new()
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
