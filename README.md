@@ -4,7 +4,9 @@ Will be at use here:
 <ol>
   <li>
     <a href="https://identityserver4.readthedocs.io/en/latest/">Identity Server 4</a>, the amazing project of Dominick Baier and Brock Allen.<br/> 
-    Working along with it, will be found my <a href="https://github.com/heliosCreation/IdentityServer-HeliosAdminUI">HeliosAdminUI</a> project to offer a UI, a User store and data persistency.
+    Working along with it, will be found my <a href="https://github.com/heliosCreation/IdentityServer-HeliosAdminUI">HeliosAdminUI</a> project to offer a UI, a User store and data persistency. <br/>
+        <img src="https://user-images.githubusercontent.com/71494857/138648668-450f1f89-2ff3-4ce4-ab46-7536c8092be6.png">
+
   </li>
   <li>
     A REST API built with .Net 5 and following the Clean Architecture principles.<br/>
@@ -22,6 +24,8 @@ Will be at use here:
         <li>
           Swagger UI as a support for the documentation and the development support.
         </li>
+        <br/>
+        <img width="923" alt="Swagger" src="https://user-images.githubusercontent.com/71494857/138649514-47ea9e82-2cd4-46e4-8177-f0da62261c58.PNG">
       </ul> 
   </li>
   <li>
@@ -43,6 +47,8 @@ Will be at use here:
           <li>
               Tired of processing each API Response for your request? Take a look at the generic API Response Parser of the project. 
           </li>
+          <br/>
+          <img width="914" alt="Client" src="https://user-images.githubusercontent.com/71494857/138649736-3107adec-fef8-4d5e-8c64-f8e5b5bc79a9.PNG">
         </ul>
   </li>
   
